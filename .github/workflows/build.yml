@@ -41,6 +41,25 @@ jobs:
         env:
           MC_VERSION: ${{ env.MC_VERSION }}
 
+      - name: Download native libraries from PojavLauncher
+        run: |
+          chmod +x scripts/download_natives.sh
+          ./scripts/download_natives.sh /tmp/pojav_extract
+
+          # Copy native .so files to jniLibs
+          mkdir -p app/src/main/jniLibs/arm64-v8a
+          cp /tmp/pojav_extract/natives/*.so app/src/main/jniLibs/arm64-v8a/
+
+          # Copy JRE components to assets if available
+          if [ -d "/tmp/pojav_extract/jre_components" ]; then
+            cp -r /tmp/pojav_extract/jre_components/* app/src/main/assets/ 2>/dev/null || true
+          fi
+
+          echo "=== Native libs ==="
+          ls -lh app/src/main/jniLibs/arm64-v8a/
+          echo "=== Assets ==="
+          ls -lh app/src/main/assets/
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
         with:
