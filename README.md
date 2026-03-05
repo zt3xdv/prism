@@ -1,35 +1,27 @@
 # Prism
 
-Lightweight Android launcher for Minecraft Java Edition.
+Lightweight Minecraft: Java Edition launcher for Android, based on PojavLauncher.
 
 ## Features
 
 - Offline mode (username-only login)
-- Bundled jar — no extra downloads needed
-- Configurable RAM and resolution
-- Minimal UI, fast launch
+- Minimal and clean UI
+- arm64 only (lightweight)
+- Pre-configured gl4es renderer
 
 ## Build
 
-### GitHub Actions (recommended)
-Push to `main` and the APK will be built automatically.
-Download from the Actions artifacts.
+Push to `main` and GitHub Actions will build the APK automatically.
 
-### Local
+### Manual build
 ```bash
-# Download and patch the jar
-./scripts/download_and_patch.sh app/src/main/assets
-
-# Build
-./gradlew assembleDebug
+./gradlew :app_pojavlauncher:assembleDebug
 ```
 
-## Requirements
+## Credits
 
-- Android 8.0+ (API 26)
-- arm64 device
-- JRE runtime in assets (see docs)
+Based on [PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher) (LGPL-3.0).
 
 ## License
 
-For educational purposes only.
+GNU LGPLv3

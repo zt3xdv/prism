@@ -1,8 +1,7 @@
 pluginManagement {
     repositories {
-        google()
-        mavenCentral()
         gradlePluginPortal()
+        google()
     }
 }
 
@@ -11,8 +10,13 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://jitpack.io" }
     }
 }
 
-rootProject.name = 'Prism'
-include ':app'
+rootProject.name='PojavLauncher'
+include ':jre_lwjgl3glfw'
+include ':app_pojavlauncher'
+
+include ':arc_dns_injector'
+include ':forge_installer'
