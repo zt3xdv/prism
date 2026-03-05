@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Prism</string>
+    <string name="username_hint">Nombre de usuario</string>
+    <string name="btn_play">Jugar</string>
+    <string name="btn_options">Opciones</string>
+    <string name="ram_label">RAM (MB)</string>
+    <string name="resolution_label">Resolución</string>
+    <string name="btn_save">Guardar</string>
+    <string name="btn_back">Volver</string>
+    <string name="loading">Preparando...</string>
+    <string name="error_no_username">Ingresa un nombre de usuario</string>
+</resources>

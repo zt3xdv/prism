@@ -1,0 +1,13 @@
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+*.apk
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+app/src/main/assets/minecraft.jar

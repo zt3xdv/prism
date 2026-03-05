@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#1A1A2E">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ram_label"
+        android:textColor="#CCCCCC"
+        android:textSize="14sp" />
+
+    <SeekBar
+        android:id="@+id/seekRam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="4096"
+        android:progress="1024"
+        android:layout_marginTop="8dp"
+        android:progressTint="#6C3FE0"
+        android:thumbTint="#6C3FE0" />
+
+    <TextView
+        android:id="@+id/ramValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1024 MB"
+        android:textColor="#AAAAAA"
+        android:textSize="12sp"
+        android:layout_marginTop="4dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/resolution_label"
+        android:textColor="#CCCCCC"
+        android:textSize="14sp"
+        android:layout_marginTop="24dp" />
+
+    <Spinner
+        android:id="@+id/spinnerResolution"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#6C3FE0" />
+
+</LinearLayout>

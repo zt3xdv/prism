@@ -1,0 +1,12 @@
+# Offline Authentication Patch for Prism
+#
+# This patch enables offline mode by:
+# 1. Bypassing Mojang session validation
+# 2. Generating offline UUIDs from username
+# 3. Using --accessToken 0 as launch argument
+#
+# The game is launched with these arguments:
+#   --username <name> --accessToken 0 --version Prism
+#
+# This makes the client skip online authentication
+# and use a locally-generated UUID for the player profile.

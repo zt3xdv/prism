@@ -1,0 +1,3 @@
+-keep class com.prism.launcher.** { *; }
+-dontwarn javax.**
+-dontwarn java.awt.**
