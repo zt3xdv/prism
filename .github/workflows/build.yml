@@ -23,38 +23,36 @@ jobs:
       - name: Get LTW
         continue-on-error: true
         run: |
-          cd app_pojavlauncher/libs
-          wget -q https://github.com/PojavLauncherTeam/LTW/releases/latest/download/ltw-release.aar || true
+          mkdir -p app_pojavlauncher/libs
+          wget -q https://github.com/PojavLauncherTeam/LTW/releases/latest/download/ltw-release.aar -O app_pojavlauncher/libs/ltw-release.aar || true
 
-      - name: Get JRE 8
-        uses: dawidd6/action-download-artifact@v9
-        with:
-          workflow: build.yml
-          path: app_pojavlauncher/src/main/assets/components/jre
-          workflow_conclusion: success
-          repo: PojavLauncherTeam/android-openjdk-build-multiarch
-          branch: buildjre8
-          name: jre8-pojav
+      - name: Get JRE from PojavLauncher APK
+        run: |
+          # Download the PojavLauncher APK which has JRE bundled
+          wget -q https://github.com/PojavLauncherTeam/PojavLauncher/releases/download/gladiolus/PojavLauncher.apk -O /tmp/pojav.apk
 
-      - name: Get JRE17
-        uses: dawidd6/action-download-artifact@v9
-        with:
-          workflow: build.yml
-          path: app_pojavlauncher/src/main/assets/components/jre-new
-          workflow_conclusion: success
-          repo: PojavLauncherTeam/android-openjdk-build-multiarch
-          branch: buildjre17-21
-          name: jre17-pojav
+          # Extract JRE components from APK assets
+          cd /tmp && unzip -q pojav.apk "assets/components/*" -d extracted/ || true
 
-      - name: Get JRE21
-        uses: dawidd6/action-download-artifact@v9
-        with:
-          workflow: build.yml
-          path: app_pojavlauncher/src/main/assets/components/jre-21
-          workflow_conclusion: success
-          repo: PojavLauncherTeam/android-openjdk-build-multiarch
-          branch: buildjre17-21
-          name: jre21-pojav
+          # Copy JRE components to our assets
+          if [ -d "extracted/assets/components/jre" ]; then
+            mkdir -p $GITHUB_WORKSPACE/app_pojavlauncher/src/main/assets/components/
+            cp -r extracted/assets/components/jre $GITHUB_WORKSPACE/app_pojavlauncher/src/main/assets/components/jre
+            echo "JRE 8 extracted"
+          fi
+
+          if [ -d "extracted/assets/components/jre-new" ]; then
+            cp -r extracted/assets/components/jre-new $GITHUB_WORKSPACE/app_pojavlauncher/src/main/assets/components/jre-new
+            echo "JRE 17 extracted"
+          fi
+
+          if [ -d "extracted/assets/components/jre-21" ]; then
+            cp -r extracted/assets/components/jre-21 $GITHUB_WORKSPACE/app_pojavlauncher/src/main/assets/components/jre-21
+            echo "JRE 21 extracted"
+          fi
+
+          echo "=== JRE components ==="
+          ls -lhR $GITHUB_WORKSPACE/app_pojavlauncher/src/main/assets/components/ | head -20
 
       - uses: gradle/actions/setup-gradle@v4
         with:
